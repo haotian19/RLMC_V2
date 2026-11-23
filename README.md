@@ -1,8 +1,8 @@
-# RLMC v2 — Reproducible Code for "A Residual Linear Deep Model for Breast Cancer Risk Prediction Using Structured Clinical Factors from the BCSC Dataset"
+# RLMC v2
 
 This repository contains the complete experimental pipeline for the RLMC v2 paper:
 data preprocessing, model training (three configurations), machine-learning baselines,
-count ablation, result aggregation, and publication-ready plotting (via R).
+count ablation, result aggregation.
 
 ## Paper correspondence
 
@@ -15,7 +15,6 @@ count ablation, result aggregation, and publication-ready plotting (via R).
 | `main_ml.py` | 2.3 / 3.2 (baselines) |
 | `evaluate.py` | 3.4 (SHAP computation for Figure 5) |
 | `merge_results.py` | aggregates all runs into `paper_data.xlsx` |
-| `plots.R` | Figures 2–5 and Tables 2–4 (preview mode; RStudio export) |
 | `test.py` | standalone checkpoint re-evaluation (3.2) |
 | `run_all.py` | one-command orchestration of the full pipeline |
 
@@ -87,25 +86,3 @@ Sheets map one-to-one to manuscript items:
 `Table2_ml_CI`, `Fig2_training_curves`, `Fig3_roc_curves`, `Fig4_attention`,
 `Fig5_shap`, `Fig5_shap_importance`, `configs`.
 Pass `--include_predictions` to also merge the raw prediction files (large).
-
-## Figures and tables (R)
-
-```r
-Rscript plots.R paper_data.xlsx
-```
-
-`plots.R` previews every figure (Fig2 loss curves; Fig3 combined metric bars + ROC;
-Fig4 attention heatmaps; Fig5 SHAP beeswarm) and prints Tables 2–4 in the console.
-Set `SAVE <- TRUE` at the top of the script to additionally export PDF (vector) +
-TIFF (600 dpi) figures and CSV/HTML tables into `figures_r/`.
-Note: the fixed-threshold comparison rows of Table 3 are archived constants in the
-script (first experimental round, threshold 0.5); calibrated rows are recomputed
-from the workbook. If `ggbeeswarm`/`gt` are unavailable, the script falls back to
-jitter points / CSV-only output.
-
-## Notes
-
-- The exact SMOTENC handling follows the paper: nine predictors are treated as
-  categorical; bmi, agefirst, and lastmamm are interpolated as numeric (Section 2.2).
-- Runtime: the full pipeline takes roughly 15–20 h on a single GPU (3 seeds);
-  use `--resume` after interruptions, or `--skip_ablation`/`--skip_shap` for drafts.
