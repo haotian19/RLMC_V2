@@ -8,12 +8,12 @@ count ablation, result aggregation.
 
 | File | Manuscript section |
 |---|---|
-| `preprocess.py` | 2.2 (data checks; prints prevalence, combination counts) |
-| `rlmc.py` | 2.4 (model architecture: base / conv / attn) |
-| `utils.py` | 2.5 / 3.3 (early stopping, metrics, attention export) |
-| `main.py` | 2.2 / 2.5 / 3.1 / 3.2 (RLMC v2 training) |
-| `main_ml.py` | 2.3 / 3.2 (baselines) |
-| `evaluate.py` | 3.4 (SHAP computation for Figure 5) |
+| `preprocess.py` |data checks; prints prevalence, combination counts|
+| `rlmc.py` |model architecture: base / conv / attn|
+| `utils.py` |early stopping, metrics, attention export|
+| `main.py` |RLMC v2 training|
+| `main_ml.py` |baselines |
+| `evaluate.py` |SHAP computation for Figure 5|
 | `merge_results.py` | aggregates all runs into `paper_data.xlsx` |
 | `test.py` | standalone checkpoint re-evaluation (3.2) |
 | `run_all.py` | one-command orchestration of the full pipeline |
